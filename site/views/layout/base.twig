@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block css %}{% endblock %}
+    {% block script %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    {% block header %}
+        {% include '/layout/menu.twig' %}
+    {% endblock %}
+    {% block content %}{% endblock %}
+    {% block footer %}
+        {% include '/layout/footer.twig' %}
+    {% endblock %}
+</body>
+</html>
