@@ -1,0 +1,12 @@
+@import "../../vendor/twbs/bootstrap/scss/bootstrap.scss";
+
+.banner {
+    background: red no-repeat 100%/cover;
+}
+
+.hello-world {
+    background: blue;
+    padding: 1rem;
+    margin: 1rem;
+    font-size: 50rem;
+}
