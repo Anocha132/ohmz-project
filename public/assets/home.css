@@ -1,5 +1,3 @@
-@import "../../vendor/twbs/bootstrap/scss/bootstrap.scss";
-
 .banner {
     background: red no-repeat 100%/cover;
 }
