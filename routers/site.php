@@ -2,4 +2,4 @@
 
 use App\Controllers;
 
-$app->get('/', Controllers\HomeController::class . ':index')->setName('home');
+$app->get('/', Controllers\HomeController::class . ':index');
