@@ -1,0 +1,63 @@
+{% extends 'layouts/base.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="assets/register.css">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="content text-center">
+        <div class="border-register">
+            <h1>ลงทะเบียน</h1>
+            <form class="my-5">
+                <div class="form-group row justify-content-center">
+                    <label for="username" class="col-1">Username</label>
+                    <div class="col-6">
+                        <input type="text" id="username" class="form-control" placeholder="Username">
+                    </div>
+                </div>
+                <div class="form-group row justify-content-center">
+                    <label for="password" class="col-1">Password</label>
+                    <div class="col-6">
+                        <input type="password" id="password" class="form-control" placeholder="Password">
+                    </div>
+                </div>
+                <div class="form-group row justify-content-center">
+                    <label for="name" class="col-1">ชื่อ</label>
+                    <div class="col-6">
+                        <input type="text" id="name" class="form-control" placeholder="ชื่อ">
+                    </div>
+                </div>
+                <div class="form-group row justify-content-center">
+                    <label for="lastname" class="col-1">นามสกุล</label>
+                    <div class="col-6">
+                        <input type="text" id="lastname" class="form-control" placeholder="นามสกุล">
+                    </div>
+                </div>
+                <div class="form-group row justify-content-center">
+                    <label for="gender" class="col-1">เพศ</label>
+                    <div class="col-6">
+                        <select id="gender" class="form-control">
+                            <option value="" disabled selected>กรุณาเลือกเพศ</option>
+                            <option value="male">ชาย</option>
+                            <option value="female">หญิง</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row justify-content-center">
+                    <label for="age" class="col-1">อายุ</label>
+                    <div class="col-6">
+                        <input type="text" id="age" class="form-control" placeholder="อายุ">
+                    </div>
+                </div>
+                <div class="form-group row justify-content-center pt-2">
+                    <button type="button" class="btn btn-success mr-4">ตกลง</button>
+                    <button type="button" class="btn btn-warning ml-4">ยกเลิก</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
