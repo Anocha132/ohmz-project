@@ -12,5 +12,7 @@ $app->get('/about-us', Controllers\AboutUsController::class . ':index')->setName
 $app->get('/contact-us', Controllers\ContactUsController::class . ':index')->setName('contact-us');
 
 $app->get('/log-in', Controllers\LogInController::class . ':index')->setName('log-in');
+$app->post('/log-in', Controllers\LogInController::class . ':logIn');
 
 $app->get('/register', Controllers\RegisterController::class . ':index')->setName('register');
+$app->post('/register', Controllers\RegisterController::class . ':store');
