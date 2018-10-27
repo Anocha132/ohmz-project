@@ -11,25 +11,31 @@
                     <a class="nav-link" href="{{ path_for('home') }}">หน้าแรก
                         <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        บทเรียน
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ path_for('chapter-1') }}">การแพร่และการออสโมซิส</a>
-                        <a class="dropdown-item" href="{{ path_for('chapter-2') }}">การสังเคราะห์แสงของพืช</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        แบบทดสอบ
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ path_for('exercise-1') }}">บทที่ 1</a>
-                        <a class="dropdown-item" href="{{ path_for('exercise-2') }}">บทที่ 2</a>
-                        <a class="dropdown-item" href="{{ path_for('exercise-3') }}">บทที่ 3</a>
-                    </div>
-                </li>
+                {% if chapter %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            บทเรียน
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% for item in chapter %}
+                            <a class="dropdown-item" href="{{ path_for('home') }}">{{item.title}}</a>
+                        {% endfor %}
+                            
+                        </div>
+                    </li>
+                {% endif %}
+                {% if condition %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            แบบทดสอบ
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% for item in exercise %}
+                            <a class="dropdown-item" href="{{ path_for('home') }}">{{item.title}}</a>
+                        {% endfor %}
+                        </div>
+                    </li>
+                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path_for('about-us') }}">เกี่ยวกับเรา</a>
                 </li>

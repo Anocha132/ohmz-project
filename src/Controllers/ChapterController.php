@@ -5,9 +5,9 @@ namespace App\Controllers;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-class Chapter2Controller extends BaseController
+class ChapterController extends BaseController
 {
     function index($request, $response, $args) {
-        return $this->container->view->render($response, 'chapter-2.twig');
+        return $this->container->view->render($response, 'chapter.twig');
     }
 }
