@@ -15,6 +15,8 @@ class LogInController extends BaseController
 
         $params = $request->getParams();
 
+        $login = Register::where('username', $params['username']);
+
         return $response->withJson(200, $params);
     }
 }

@@ -17,6 +17,15 @@ class RegisterController extends BaseController
 
         $params = $request->getParams();
 
+        $register = new Register;
+
+        $register->username = $params['username'];
+        $register->password = $params['password'];
+        $register->firstname = $params['firstname'];
+        $register->lastname = $params['lastname'];
+        $register->gender = $params['gender'];
+        $register->age = $params['age'];
+
         return $response->withJson(200, $params);
     }
 }
