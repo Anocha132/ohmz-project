@@ -17,8 +17,6 @@ class RegisterController extends BaseController
 
         $params = $request->getParams();
 
-        sd($params);
-
         return $response->withJson(200, $params);
     }
 }
