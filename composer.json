@@ -17,7 +17,8 @@
         "slim/twig-view": "^2.4",
         "illuminate/database": "^5.2.45",
         "illuminate/pagination": "^5.2",
-        "php-di/slim-bridge": "^1.0"
+        "php-di/slim-bridge": "^1.0",
+        "firebase/php-jwt": "^5.0"
     },
     "require-dev": {
         "kint-php/kint": "^2.2",
