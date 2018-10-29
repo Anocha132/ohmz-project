@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Profile extends Model
 {
-    public $timestamps = fasle;
+    public $timestamps = false;
     
     protected $fillable = [
         'firstname',
@@ -17,4 +17,8 @@ class Profile extends Model
         'phone',
         'email',
     ];
+
+    public function user() {
+        return $this->belongsTo('user_id');
+    }
 }

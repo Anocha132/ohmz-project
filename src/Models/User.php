@@ -10,4 +10,8 @@ class User extends Model
         'username',
         'password',
     ];
+
+    public function profile() {
+        return $this->hasOne('id');
+    }
 }

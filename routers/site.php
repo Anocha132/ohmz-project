@@ -17,6 +17,7 @@ $app->group('/log-in', function() {
 $app->group('/register', function() {
     $this->get('', Controllers\RegisterController::class . ':index')->setName('register');
     $this->post('', Controllers\RegisterController::class . ':store');
+    $this->get('/thank-you', Controllers\RegisterController::class . ':thankYou')->setName('thank-you');
 });
 
 $app->group('', function() {

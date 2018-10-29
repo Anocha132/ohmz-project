@@ -23,12 +23,14 @@ class RegisterController extends BaseController
         if (isset($params)) {
 
             try{
-                $this->validation($params);
+                $this->validateRegister($params);
 
                 $user = new User;
 
                 $user->username = $params['username'];
                 $user->password = $params['password'];
+
+                $user->save();
         
                 $register = new Profile;
         
@@ -36,30 +38,36 @@ class RegisterController extends BaseController
                 $register->lastname = $params['lastname'];
                 $register->gender = $params['gender'];
                 $register->age = $params['age'];
+
                 $register->save();
         
-                return $response->withJson(200, $register);
+                return $response->withRedirect('/thank-you', 201);
 
-            } catch (Exception $e) {
-
+            } catch (ValidationException $exception) {
+                return $response->withJson([
+                    'error_message' => $exception->getMessages(),
+                ], 400);
             }
         }
        
     }
 
-    protected function validation($data) {
-        $userValidate = Validator::attribute(isset($data['username']), Validator::stringType())
-            ->attribute(isset($data['password']), Validator::stringType())
-            ->attribute(isset($data['firstname']), Validator::stringType())
-            ->attribute(isset($data['lastname']), Validator::stringType())
-            ->attribute(isset($data['gender']), Validator::stringType())
-            ->attribute(isset($data['age']), Validator::intVal());
-            // ->attribute(isset($data['nickname']), Validator::stringType())
-            // ->attribute(isset($data['email']), Validator::stringType())
-            // ->attribute(isset($data['phone']), Validator::numeric());
+    protected function validateRegister(array $data) {
 
-        $userValidate->assert($data);
+        $data = array_filter($data);
 
-        sd($userValidate);
+        $validator = Validator::attribute('username', Validator::stringType())
+            ->attribute('password', Validator::stringType())
+            ->attribute('firstname', Validator::stringType())
+            ->attribute('lastname', Validator::stringType())
+            ->attribute('gender', Validator::stringType())
+            ->attribute('age', Validator::intVal());
+
+        $validator->assert((object) $data);
+
+    }
+
+    function thankYou($request, $response, $args) {
+        return $this->container->view->render($response, 'thank-you.twig');
     }
 }
