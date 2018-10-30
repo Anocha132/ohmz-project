@@ -10,7 +10,27 @@
 <div class="container">
         <div class="banner"></div>
         <div class="content text-center">
-            <h1>Content zone</h1>
+            <div class="row">
+                <ul class="mx-auto list-none">
+                    <h2>บทเรียน</h2>
+                    <li class="h3">
+                        <a href="{{ path_for('home') }}">เซลล์พืชและเซลล์สัตว์</a>
+                    </li>
+                    <li class="h3">
+                            <a href="{{ path_for('home') }}">การสังเคราะห์แสงของพืช</a>
+                        </li>
+                </ul>
+                <ul class="mx-auto list-none">
+                    <h2>แบบฝึกหัด</h2>
+                    <li class="h3">
+                        <a href="{{ path_for('home') }}">บทที่ 1</a>
+                    </li>
+                    <li class="h3">
+                        <a href="{{ path_for('home') }}">บทที่ 2</a>
+                    </li>
+                </ul>
+            </div>
+            <h4 class="mt-5">เว็บไซต์นี้เป็นส่วนหนึ่งของโครงงาน</h4>
         </div>
 </div>
 {% endblock %}

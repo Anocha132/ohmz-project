@@ -12,6 +12,6 @@ class User extends Model
     ];
 
     public function profile() {
-        return $this->hasOne('id');
+        return $this->belongsTo('id');
     }
 }

@@ -2,3 +2,10 @@
     background: url(images/banner.jpg) no-repeat center 100%/cover;
     height: 20rem;
 }
+
+.content {
+    ul {
+        list-style: circle;
+    }
+}
+

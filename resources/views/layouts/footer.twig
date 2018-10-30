@@ -2,8 +2,7 @@
     <div class="container">
         <div class="row py-5">
             <div class="col-3">
-                {% if chapter %}
-                    <ul>
+                    <ul class="list-none">
                         บทเรียน
                         {% for item in chapter %}
                             <li>
@@ -11,11 +10,9 @@
                             </li>
                         {% endfor %}
                     </ul>
-                {% endif %}
             </div>
             <div class="col-3">
-                {% if exercise %}
-                    <ul>
+                    <ul class="list-none">
                         แบบฝึกหัด
                         {% for item in items %}
                             <li>
@@ -23,10 +20,9 @@
                             </li>
                         {% endfor %}
                     </ul>
-                {% endif %}
             </div>
             <div class="col-3">
-                <ul>
+                <ul class="list-none">
                     <li>
                         <a href="{{ path_for('about-us') }}">เกี่ยวกับเรา</a>
                     </li>
