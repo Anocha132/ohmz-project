@@ -10,8 +10,8 @@ $app->get('/contact-us', Controllers\ContactUsController::class . ':index')->set
 
 
 $app->group('/log-in', function() {
-    $this->get('', Controllers\LogInController::class . ':index')->setName('log-in');
-    $this->post('', Controllers\LogInController::class . ':logIn');
+    $this->get('', Controllers\AuthController::class . ':index')->setName('log-in');
+    $this->post('', Controllers\AuthController::class . ':login');
 });
 
 $app->group('/register', function() {
