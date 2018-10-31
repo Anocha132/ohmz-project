@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use App\Models\User;
 
 class AuthController extends BaseController
 {
@@ -15,7 +16,7 @@ class AuthController extends BaseController
 
         $params = $request->getParams();
 
-        $login = Register::where('username', $params['username']);
+        $login = User::where('username', $params['username']);
 
         return $response->withJson(200, $params);
     }

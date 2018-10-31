@@ -21,7 +21,9 @@ class RegisterController extends BaseController
         $params = $request->getParams();
 
         if (isset($params)) {
-
+            if ($params['username'] == User::where('username', $params['username'])) {
+                return $response->withJson('username is duplicate', 401);
+            }
             try{
                 $this->validateRegister($params);
 
@@ -31,16 +33,16 @@ class RegisterController extends BaseController
                 $user->password = $params['password'];
 
                 $user->save();
-        
+
                 $register = new Profile;
-        
+
                 $register->firstname = $params['firstname'];
                 $register->lastname = $params['lastname'];
                 $register->gender = $params['gender'];
                 $register->age = $params['age'];
 
                 $register->save();
-        
+
                 return $response->withRedirect('/thank-you', 201);
 
             } catch (ValidationException $exception) {
@@ -49,7 +51,7 @@ class RegisterController extends BaseController
                 ], 400);
             }
         }
-       
+
     }
 
     protected function validateRegister(array $data) {
