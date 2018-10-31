@@ -7,13 +7,13 @@ $dotenv->overload();
 
 $capsule = new Capsule;
 $capsule->addConnection([
-    'driver' => getenv('DB.DRIVER'),
-    'host' => getenv('DB.HOST'),
-    'database' => getenv('DB.DATABASE'),
-    'username' => getenv('DB.USERNAME'),
-    'password' => getenv('DB.PASSWORD'),
-    'charset' => getenv('DB.CHARSET'),
-    'collaction' => getenv('DB.COLLATION'),
+    'driver' => getenv('DB_DRIVER'),
+    'host' => getenv('DB_HOST'),
+    'database' => getenv('DB_DATABASE'),
+    'username' => getenv('DB_USERNAME'),
+    'password' => getenv('DB_PASSWORD'),
+    'charset' => getenv('DB_CHARSET'),
+    'collaction' => getenv('DB_COLLATION'),
 ]);
 
 $capsule->setAsGlobal();
