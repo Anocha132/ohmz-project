@@ -11,6 +11,10 @@ class User extends Model
         'password',
     ];
 
+    public function scopeActive($query) {
+        $query->where('avaliable', true);
+    }
+
     public function profile() {
         return $this->belongsTo('id');
     }

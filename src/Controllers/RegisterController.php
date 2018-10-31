@@ -5,6 +5,7 @@ namespace App\Controllers;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Respect\Validation\Validator;
+use Respect\Validation\Exceptions\NestedValidationException;
 use App\Models\Profile;
 use App\Models\User;
 
@@ -19,38 +20,42 @@ class RegisterController extends BaseController
     function store($request, $response, $args) {
 
         $params = $request->getParams();
+        $user = User::active()->whereUsername($params['username'])->first();
 
-        if (isset($params)) {
-            if ($params['username'] == User::where('username', $params['username'])) {
-                return $response->withJson('username is duplicate', 401);
-            }
-            try{
-                $this->validateRegister($params);
-
-                $user = new User;
-
-                $user->username = $params['username'];
-                $user->password = $params['password'];
-
-                $user->save();
-
-                $register = new Profile;
-
-                $register->firstname = $params['firstname'];
-                $register->lastname = $params['lastname'];
-                $register->gender = $params['gender'];
-                $register->age = $params['age'];
-
-                $register->save();
-
-                return $response->withRedirect('/thank-you', 201);
-
-            } catch (ValidationException $exception) {
-                return $response->withJson([
-                    'error_message' => $exception->getMessages(),
-                ], 400);
-            }
+        if ($params['username'] == $user['username']) {
+            return $response->withJson('username is duplicate', 401);
         }
+
+        $validator = Validator::attribute('username', Validator::stringType()->notEmpty())
+        ->attribute('password', Validator::stringType()->notEmpty())
+        ->attribute('firstname', Validator::stringType()->notEmpty())
+        ->attribute('lastname', Validator::stringType()->notEmpty())
+        ->attribute('gender', Validator::stringType()->notEmpty())
+        ->attribute('age', Validator::intVal()->notEmpty());
+
+        try {
+            $validator->assert((object)$params);
+        } catch(NestedValidationException $e) {
+            return $response->withJson(['message' => $e->getMessages()], 400);
+        }
+
+        $user = new User;
+
+        $user->username = $params['username'];
+        $user->password = $params['password'];
+
+        $user->save();
+
+        $register = new Profile;
+
+        $register->firstname = $params['firstname'];
+        $register->lastname = $params['lastname'];
+        $register->gender = $params['gender'];
+        $register->age = $params['age'];
+
+        $register->save();
+
+        return $response->withRedirect('/thank-you', 201);
 
     }
 
@@ -58,14 +63,12 @@ class RegisterController extends BaseController
 
         $data = array_filter($data);
 
-        $validator = Validator::attribute('username', Validator::stringType())
-            ->attribute('password', Validator::stringType())
-            ->attribute('firstname', Validator::stringType())
-            ->attribute('lastname', Validator::stringType())
-            ->attribute('gender', Validator::stringType())
-            ->attribute('age', Validator::intVal());
-
-        $validator->assert((object) $data);
+        $validator = Validator::attribute('username', Validator::stringType()->notEmpty())
+            ->attribute('password', Validator::stringType()->notEmpty())
+            ->attribute('firstname', Validator::stringType()->notEmpty())
+            ->attribute('lastname', Validator::stringType()->notEmpty())
+            ->attribute('gender', Validator::stringType()->notEmpty())
+            ->attribute('age', Validator::intVal()->notEmpty());
 
     }
 
